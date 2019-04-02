@@ -10,6 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route:: middleware (['auth'])->group(function(){
+
+    Route:: get('/login', function(){
+        return redirect(route('login'));
+    });
 
 Route::get('/', function(){
     return redirect('/tweets');
@@ -37,6 +42,7 @@ Route::get('/tweets-api',function(){
     $tweets = \App\Tweet::with(['user'])->offset($perpage * ($page-1))->limit(20)->get();
     return $tweets;
 })->middleware(['cors']);
+});
 
 Auth::routes();
 

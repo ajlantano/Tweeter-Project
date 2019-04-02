@@ -10,7 +10,9 @@
                 {{ ($tweet->is_liked ? 'Unlike' : 'Like' ) }}
                 ({{ $tweet->likes->count() }})
             </a>
+            @if(auth::id() == $tweet->user_id)
             <a href="/tweets/{{$tweet->id}}/edit">Edit</a>
+            @endif
         </div>
     </div>
 </div>

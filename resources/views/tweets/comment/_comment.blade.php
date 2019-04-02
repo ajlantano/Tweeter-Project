@@ -5,7 +5,9 @@
             {{ $comment->body }}
         </div>
         <div class="card-text">
+            @if(auth::id() == $tweet->user_id)
             <a href="/tweets/{{ $tweet->id }}/comments/{{ $comment->id }}/edit">Edit</a>
+            @endif
             <a href="/likes/{{ $comment->id }}/comments">{{ ($comment->is_liked ? 'Unlike' : 'Like' ) }}</a>
         </div>
     </div>

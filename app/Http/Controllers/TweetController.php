@@ -11,9 +11,8 @@ class TweetController extends Controller
 {
     function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+    $this->middleware('auth', ['except' => ['create', 'store', 'edit', 'update', 'delete']]);
     }
-
 
 
     /**
@@ -101,8 +100,8 @@ class TweetController extends Controller
     {
         $tweet = Tweet::find($id);
 
-        $tweet->user_id = Auth::id();
         $tweet->body = $request->body;
+
 
         if($tweet->save()){
             return redirect('/tweets/' . $tweet->id);
@@ -138,5 +137,8 @@ class TweetController extends Controller
             return back();
         }
     }
+
+
+
 
 }
