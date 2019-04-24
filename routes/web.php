@@ -12,8 +12,8 @@
 */
 Route:: middleware (['auth'])->group(function(){
 
-    Route:: get('/login', function(){
-        return redirect(route('login'));
+    Route:: get('/marketing', function(){
+        return view ('/marketing');
     });
 
 Route::get('/', function(){
@@ -43,7 +43,6 @@ Route::get('/tweets-api',function(){
     return $tweets;
 })->middleware(['cors']);
 });
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

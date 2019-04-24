@@ -19,6 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark navbar-tweeter bg-dark">
@@ -84,6 +85,7 @@
         <div class="container fluid">
         <main class="py-4">
             @yield('content')
+            @yield('marketing')
         </main>
         </div>
     </div>

@@ -8,7 +8,15 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import 'animate.min.css';
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+body{
+    background-color: lightgrey;
+}
+#marketingbody{
+    background-color: #cfcfc4;
 }

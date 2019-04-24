@@ -35,7 +35,9 @@ class LikeController extends Controller
             ]);
         }
         if ($like) {
-            return back();
+            return response()->json([
+                'status' => 'successful'
+            ]);
         }
 
 
