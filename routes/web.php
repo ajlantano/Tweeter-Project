@@ -10,11 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route:: get('/marketing', function(){
+    return view ('/marketing');
+});
 Route:: middleware (['auth'])->group(function(){
 
-    Route:: get('/marketing', function(){
-        return view ('/marketing');
-    });
+
 
 Route::get('/', function(){
     return redirect('/tweets');

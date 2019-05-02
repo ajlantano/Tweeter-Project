@@ -24,6 +24,9 @@
         "vue-template-compiler": "^2.6.7"
     },
     "dependencies": {
-        "animejs": "^3.0.1"
+        "animejs": "^3.0.1",
+        "fullpage.js": "^3.0.5",
+        "lax.js": "^1.2.3",
+        "sal.js": "^0.5.0"
     }
 }
