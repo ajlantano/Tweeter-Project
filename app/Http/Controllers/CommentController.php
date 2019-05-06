@@ -15,6 +15,7 @@ class CommentController extends Controller
     {
         $comment = new \App\Comment;
         $comment->body = $request->get('comment_body');
+        $comment->body = $request->get('giph_search');
         $comment->user_id = Auth::id();
         $comment->tweet_id = $id;
 

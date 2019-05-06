@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->integer('tweet_id');
             $table->text('body');
             $table->timestamps();
+            $table->boolean('gif_comment')->default(0);
         });
     }
 
