@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <a href ="/profiles/{{$tweet->user->id}}">
-        <h5 class="card-tite">{{ $tweet->user->name }} </h5>
+        <h5 class="card-tite">{{ $tweet->user->name }}</h5>
         <a/>
         <div class="card-text">
             {{ $tweet->body }}

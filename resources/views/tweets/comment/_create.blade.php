@@ -7,6 +7,9 @@
         <input type="text" name="comment_body" class="form-control" />
         <div class="form-group">
             <input type="submit" class="btn btn-dark" value="Add Comment" />
+            <giph-comment>
+            </giph-comment>
+            <input type="submit" class="btn btn-dark" />
         </div>
     </div>
 </div>
