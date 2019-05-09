@@ -13,14 +13,16 @@
 Route:: get('/marketing', function(){
     return view ('/marketing');
 });
+
 Route:: middleware (['auth'])->group(function(){
-
-
-
 Route::get('/', function(){
     return redirect('/tweets');
 });
-
+Route::get('/profiles/{profile}/followers', 'ProfileController@followers');
+Route::get('/profiles/{profile}/following', 'ProfileController@following');
+Route::get('/profiles/{profile}/follow', 'ProfileController@follow');
+Route::get('/profiles/{profile}/unfollow', 'ProfileController@unfollow');
+Route::get('/who-to-follow','ProfileController@suggest');
 Route::resource('/tweets', 'TweetController' );
 Route::get('/tweets/{tweet}/comments/{comment}/edit', 'CommentController@edit');
 Route::post('/tweets/{tweet}/comments', 'CommentController@store')->name('comment.add');

@@ -3,7 +3,7 @@
         <h5 class="card-tite">{{ $comment->user->name }}</h5>
         <div class="card-text">
             @if($comment->gif_comment)
-            <img src="{{($comment->body ? 1: 0)}}"> </img>
+            <img src="{{$comment->body}}" /> 
             @else
             {{$comment->body}}
             @endif

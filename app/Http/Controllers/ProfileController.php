@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use DB;
 
 class ProfileController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -111,5 +114,55 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    
+
+     public function suggest(){
+         //get an array of ID's of people user already follows
+         $following = Auth::user()->following->pluck('id')->toArray();
+
+         //add current user to following list so they aren't suggested
+         // to follow themselves
+         array_push($following, Auth::id());
+
+         $suggested = \App\User::whereNotIn('id',$following)->inRandomOrder()->limit(10)->get();
+         return view('profiles.suggested',['users' => $suggested]);
+
+     }
+
+     public function followers($id){
+         $user = \App\User::with('followers')->find($id);
+         return view('profiles.followers', compact('user'));
+
+     }
+     public function following($id){
+         $user = \App\User::with('followers')->find($id);
+         return view ('profiles.following', compact('user'));
+     }
+
+     public function follow(Request $request, $leader_id){
+         $follow = DB::table('followers')->insert([
+             'leader_id' => $leader_id,
+             'follower_id' => Auth::id()
+         ]);
+
+         if($follow){
+             $user = \App\User::find($leader_id);
+             $request->session()->flash('message','You are now following ' . $user->name);
+             return redirect(url()->previous());
+         }
+         dd('Unspecified error');
+     }
+
+     public function unfollow(Request $request, $leader_id){
+         $delete = DB::table('followers')->where([
+             ['leader_id', $leader_id],
+             ['follower_id', Auth::id()]
+         ])->delete();
+         if($delete){
+             $user = \App\User::find($leader_id);
+             $request->session()->flash('message', 'You are not following ' . $user->name . ' anymore, Thankfully!');
+             return redirect(url()->previous());
+         }
+         dd('Unspecified error');
+     }
+
 }

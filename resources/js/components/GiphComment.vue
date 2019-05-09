@@ -2,7 +2,7 @@
     <div>
         <h2 class="title">Search</h2>
         <input type="hidden" name="giph_search" v-model="selectedGif">
-        <input type="hidden" name="is_gif" :value="(selectedGif ? 1 : 0)">
+        <input type="hidden" name="gif_comment" :value="(selectedGif ? 1 : 0)">
        <input type="text" class="input-group-append" name="query" v-model="query" @keyup="fetchGifs">
 
        <div class="columns is-multiline" v-if="dropdownOpen">

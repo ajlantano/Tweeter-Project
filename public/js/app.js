@@ -37017,7 +37017,7 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("input", {
-      attrs: { type: "hidden", name: "is_gif" },
+      attrs: { type: "hidden", name: "gif_comment" },
       domProps: { value: _vm.selectedGif ? 1 : 0 }
     }),
     _vm._v(" "),

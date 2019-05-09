@@ -14,8 +14,12 @@ class CommentController extends Controller
     public function store(Request $request, $id)
     {
         $comment = new \App\Comment;
+        $comment->gif_comment = $request->gif_comment;
         $comment->body = $request->get('comment_body');
-        $comment->body = $request->get('giph_search');
+        if($comment->gif_comment) {
+            $comment->body = $request->get('giph_search');
+        }
+
         $comment->user_id = Auth::id();
         $comment->tweet_id = $id;
 

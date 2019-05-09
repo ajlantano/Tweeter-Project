@@ -65,11 +65,15 @@
                                     <a href="/tweets/create" class="dropdown-item">
                                         Create Tweet
                                     </a>
+                                    <a href="/who-to-follow" class="dropdown-item">
+                                        Who To Follow
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+
 
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -83,6 +87,16 @@
             </div>
         </nav>
         <div class="container fluid">
+            @if(request()->session()->has('error'))
+            <p class= "alert alert-danger">
+                {{request()->session()->get('error')}}
+            </p>
+            @endif
+            @if(request()->session()->has('message'))
+            <p class="alert alert-secondary">
+                {{request()->session()->get('message')}}
+            </p>
+            @endif
         <main class="py-4">
             @yield('content')
             @yield('marketing')
