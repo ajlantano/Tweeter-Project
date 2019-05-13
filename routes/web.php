@@ -14,7 +14,10 @@ Route:: get('/marketing', function(){
     return view ('/marketing');
 });
 
-
+Route::get('logout', function(){
+    Auth::logout();
+    return redirect ('login');
+});
 Route:: middleware (['auth'])->group(function(){
 Route::get('/', function(){
     return redirect('/tweets');
