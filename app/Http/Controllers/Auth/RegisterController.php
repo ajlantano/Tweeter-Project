@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Jobs\SendWelcomEmail;
+use App\Jobs\SendWelcomeEmail;
 
 class RegisterController extends Controller
 {
@@ -71,7 +71,7 @@ class RegisterController extends Controller
         ]);
 
         if ($user){
-            SendWelcomEmail::dispatch($user)->onQueue('email');
+            SendWelcomeEmail::dispatch($user)->onQueue('email');
 
             $profile = \App\Profile::create([
                 'user_id' => $user->id,

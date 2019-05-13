@@ -10,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Mail;
 use App\Mail\WelcomeEmail;
 
-class SendWelcomEmail implements ShouldQueue
+class SendWelcomeEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -33,7 +33,7 @@ class SendWelcomEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send(new WelcomeEmail ($this->user));
+        Mail::to($this->user->email)->send(new WelcomeEmail($this->user));
 
     }
 }
