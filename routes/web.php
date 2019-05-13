@@ -14,10 +14,7 @@ Route:: get('/marketing', function(){
     return view ('/marketing');
 });
 
-Route::get('logout', function(){
-    Auth::logout();
-    return redirect ('login');
-});
+
 Route:: middleware (['auth'])->group(function(){
 Route::get('/', function(){
     return redirect('/tweets');
@@ -51,5 +48,8 @@ Route::get('/tweets-api',function(){
 })->middleware(['cors']);
 });
 Auth::routes();
-
+Route::get('logout', function(){
+    Auth::logout();
+    return redirect('login');
+});
 Route::get('/home', 'HomeController@index')->name('home');
