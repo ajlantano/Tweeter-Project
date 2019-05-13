@@ -14,6 +14,7 @@ Route:: get('/marketing', function(){
     return view ('/marketing');
 });
 
+
 Route:: middleware (['auth'])->group(function(){
 Route::get('/', function(){
     return redirect('/tweets');
