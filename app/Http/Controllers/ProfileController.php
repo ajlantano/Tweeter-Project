@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use DB;
 
@@ -86,6 +87,23 @@ class ProfileController extends Controller
         $profile->website = $request->website;
         $profile->bio = $request->bio;
         $profile->birthday = $request->birthday;
+
+        $request->validate([
+            'avatar' => 'image|mimes:jpeg,jpg,pn,gif|max:2048'
+        ]);
+
+        foreach($request->except(['_method', '_token', 'avatar']) as $k=>$v){
+            $profile->$k = $v;
+        }
+
+        if($request->file('avatar')){
+            $image = $request->file('avatar');
+            $new_name = uniqid().'.'.$image->getClientOriginalExtension();
+            Storage::disk('s3')->put("/avatars/" . $id . '/' . $new_name, file_get_contents($image),'public');
+            $profile->avatar = $new_name;
+        } else {
+            $profile->avatar = null;
+        }
 
         if ($profile->save()){
             return redirect('/profiles/' . $id);
